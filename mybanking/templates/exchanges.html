@@ -1,0 +1,58 @@
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+{% block title %}Exchanges{% endblock %}
+{% block body %}
+<div class="content-section">
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <br/>
+        {{ utils.flashed_messages() }}
+        <br/>
+        <h1 style="text-align:center;">My Exchanges</h1>
+        {% if exchanges %}
+          <hr class="intro-divider">
+          <div class="center">
+            <table class="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th width="15%"> Currency </th>
+                  <th width="23%"> Amount </th>
+                  <th width="23%"> Currency to USD Rate </th>
+                  <th width="23%"> USD Amount </th>
+                  <th width="15%"> Delete </th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for exchange in exchanges %}
+                <tr>
+                  <td> {{ exchange.currency }} </td>
+                  <td> {{ exchange.amount }} </td>
+                  <td> {{ exchange.exchange_rate }} </td>
+                  <td> {{ exchange.amount_usd }} </td>
+                  <td>
+                    <form method="post" action="{{ url_for('delete', id=exchange.id) }}">
+                      <button type="submit"><a><i class="fa fa-trash"></i>  Delete</a></button>
+                    </form>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div style="text-align: center">
+        {% else %}
+          <div style="text-align: center">
+            <h3> No exchanges have been made. </h3>
+            <hr class="intro-divider">
+        {% endif %}
+          <a href="{{ url_for('create_exchange_page') }}" class="btn btn-default btn-lg">
+            <i class="fa fa-plus"></i>
+            Exchange Amount
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

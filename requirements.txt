@@ -1,0 +1,12 @@
+Flask==1.1.1
+flask-marshmallow==0.11.0
+Flask-Bootstrap==3.3.7.1
+marshmallow-sqlalchemy==0.18.0
+python-dotenv
+flask_sqlalchemy==2.4.1
+flask_migrate==2.5.3
+simplejson==3.17.0
+flask_wtf==0.14.3
+requests==2.23.0
+mysqlclient==1.4.6
+
